@@ -39,11 +39,17 @@ public class CompoundManager : MonoBehaviour
             //set values of the new compound
             compoundList[i].SetText((string)compoundData[i]["Name"]);
             compoundList[i].SetDesc((string)compoundData[i]["Description"]);
+            compoundList[i].SetActiveDesc(compoundList[i].description);
+            compoundList[i].SetObtain((string)compoundData[i]["Obtain"]);
             compoundList[i].SetAmount(0); //set to 0 by default
             compoundList[i].SetMax(Convert.ToInt32(compoundData[i]["Max"]));
             compoundList[i].SetUnlocked(false); //makes all locked by default
             compoundList[i].SetID(i);
+            compoundList[i].SetActive(0);
         }
+
+        //manually unlock water at start
+        compoundList[0].SetUnlocked(true);
     }
 
     // Update is called once per frame
@@ -51,10 +57,4 @@ public class CompoundManager : MonoBehaviour
     {
         
     }
-
-    //list of all compound strings
-    public readonly string[] compoundStrings = { "Water", "Carbon Monoxide", "Carbon Dioxide", "Iron Oxide", "Methane" };
-
-    //list of compound descriptions
-    public readonly string[] compoundDescs = { "Testing 1", "Test", "TESTESTESTESTESTEST", "Descirption", "000000000000000000000000000000000000" };
 }
